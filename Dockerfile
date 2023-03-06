@@ -30,5 +30,6 @@ RUN set -e \
 #VOLUME /var/lib/asterisk/sounds /var/lib/asterisk/keys /var/lib/asterisk/phoneprov /var/spool/asterisk /var/log/asterisk
 
 ADD docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
