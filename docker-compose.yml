@@ -10,8 +10,8 @@ services:
       - /run/udev:/run/udev:ro
       - /dev:/dev
     ports:
-      - "5060:5060/udp"
-      - "10000-20000:10000-20000"
+      - "5060/udp"
+      - "10000-20000/udp"
     restart: unless-stopped
     # https://stackoverflow.com/a/62758958
     device_cgroup_rules: ["c 188:* rmw"]
