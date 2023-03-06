@@ -7,9 +7,13 @@ services:
       - PUID=1000
     volumes:
       - config:/etc/asterisk
+      - /run/udev:/run/udev:ro
+      - /dev:/dev
     ports:
       - 5060:5060/udp
     restart: unless-stopped
+    # https://stackoverflow.com/a/62758958
+    device_cgroup_rules: ['c 188:* rmw']
     
 volumes:
-  config:  
+  config:
