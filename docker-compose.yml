@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  asterisk:
+    build: .
+    container_name: asterisk
+    environment:
+      - PUID=1000
+    volumes:
+      - config:/etc/asterisk
+    ports:
+      - 5060:5060/udp
+    restart: unless-stopped
+    
+volumes:
+  config:  
