@@ -9,8 +9,8 @@ services:
       - config:/etc/asterisk
       - /run/udev:/run/udev:ro
       - /dev:/dev
-    #ports:
-    #  - "5060/udp"
+    ports:
+      - "5060/udp"
     #  - "10000-20000/udp"
     restart: unless-stopped
     # https://stackoverflow.com/a/62758958
