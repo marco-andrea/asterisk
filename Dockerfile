@@ -1,5 +1,4 @@
-# vim:set ft=dockerfile:
-FROM <%= docker_baseimage %>
+FROM alpine:3.16
 
 LABEL maintainer="Andrius Kairiukstis <k@andrius.mobi>"
 
@@ -9,6 +8,7 @@ ENV LC_ALL C.UTF-8
 RUN set -e \
 && apk add --update --quiet \
          asterisk \
+         asterisk-chan-dongle \
          asterisk-sample-config >/dev/null \
 && asterisk -U asterisk &>/dev/null \
 && sleep 5s \
