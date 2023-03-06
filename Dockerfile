@@ -29,8 +29,6 @@ RUN set -e \
 #EXPOSE 5060/udp 5060/tcp
 #VOLUME /var/lib/asterisk/sounds /var/lib/asterisk/keys /var/lib/asterisk/phoneprov /var/spool/asterisk /var/log/asterisk
 
-ADD ./entrypoint.sh /docker-entrypoint2.sh
+ADD entrypoint.sh /docker-entrypoint.sh
 
-RUN ["chmod", "+x", "/docker-entrypoint2.sh"]
-
-ENTRYPOINT ["sh", "/docker-entrypoint2.sh"]
+ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
