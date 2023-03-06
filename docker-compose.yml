@@ -13,7 +13,7 @@ services:
       - 5060:5060/udp
     restart: unless-stopped
     # https://stackoverflow.com/a/62758958
-    device_cgroup_rules: ['c 188:* rmw']
+    device_cgroup_rules: ["c 188:* rmw"]
     
 volumes:
   config:
