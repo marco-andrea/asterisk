@@ -7,7 +7,7 @@ services:
       - PUID=1000
     volumes:        
       - type: volume
-        source: config
+        source: config/asterisk/
         target: /etc/asterisk    
       #- config:/etc/asterisk
       - /run/udev:/run/udev:ro
