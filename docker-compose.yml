@@ -12,6 +12,7 @@ services:
     #ports:
     #  - "5060:5060/udp"
     #  - "10000-10005:10000-10005/udp"
+    # https://github.com/docker/compose/issues/9085
     network_mode: host
     restart: unless-stopped
     # https://stackoverflow.com/a/62758958
