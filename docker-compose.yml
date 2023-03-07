@@ -2,11 +2,14 @@ version: "2.1"
 services:
   asterisk:
     build: .
-    container_name: asterisk
+    #container_name: asterisk
     environment:
       - PUID=1000
-    volumes:
-      - config:/etc/asterisk
+    volumes:        
+      - type: bind
+        source: config/asterisk
+        target: /etc/asterisk    
+      #- config:/etc/asterisk
       - /run/udev:/run/udev:ro
       - /dev:/dev
     #ports:
@@ -17,23 +20,6 @@ services:
     restart: unless-stopped
     # https://stackoverflow.com/a/62758958
     device_cgroup_rules: ["c 188:* rmw"]
-    
-  fail2ban:
-    image: lscr.io/linuxserver/fail2ban:latest
-    container_name: fail2ban
-    cap_add:
-      - NET_ADMIN
-      - NET_RAW
-    network_mode: host
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-    #volumes:
-      - config:/config
-      #- logs/asterisk:/remotelogs/asterisk:ro
-      #- /var/log:/var/log:ro
-    restart: unless-stopped    
     
 volumes:
   config:
