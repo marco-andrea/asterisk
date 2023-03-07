@@ -6,10 +6,9 @@ services:
     environment:
       - PUID=1000
     volumes:
-      - config/asterisk:/etc/asterisk
+      - config:/etc/asterisk
       - /run/udev:/run/udev:ro
       - /dev:/dev
-      #- logs/asterisk:/var/log/asterisk
     #ports:
     #  - "5060:5060/udp"
     #  - "10000-10005:10000-10005/udp"
@@ -31,7 +30,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - config/fail2ban:/config
+      #- config/fail2ban:/config
       #- logs/asterisk:/remotelogs/asterisk:ro
       #- /var/log:/var/log:ro
     restart: unless-stopped    
