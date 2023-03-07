@@ -29,7 +29,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-    volumes:
+    #volumes:
       #- config/fail2ban:/config
       #- logs/asterisk:/remotelogs/asterisk:ro
       #- /var/log:/var/log:ro
