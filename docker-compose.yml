@@ -6,7 +6,7 @@ services:
     environment:
       - PUID=1000
     volumes:        
-      - type: bind
+      - type: volume
         source: config/asterisk
         target: /etc/asterisk    
       #- config:/etc/asterisk
