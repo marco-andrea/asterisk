@@ -6,10 +6,11 @@ services:
     environment:
       - PUID=1000
     volumes:        
-      - type: volume
-        source: config
-        target: /etc/asterisk    
-      #- config:/etc/asterisk
+     # - type: volume
+     #   source: config
+     #   target: /etc/asterisk    
+      - config:/etc/asterisk
+      - log:/var/log/asterisk
       - /run/udev:/run/udev:ro
       - /dev:/dev
     #ports:
@@ -23,4 +24,4 @@ services:
     
 volumes:
   config:
-  logs:
+  log:
