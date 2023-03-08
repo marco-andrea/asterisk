@@ -10,7 +10,7 @@ services:
      # - type: volume
      #   source: config
      #   target: /etc/asterisk    
-      - /home/ubuntu/asterisk/config:/etc/asterisk
+      - config:/etc/asterisk
      # - log:/var/log/asterisk
       - /run/udev:/run/udev:ro
       - /dev:/dev
@@ -39,6 +39,6 @@ services:
 #      - log:/remotelogs/asterisk:ro #optional
 #    restart: unless-stopped
           
-#volumes:
-#  config:
+volumes:
+  config:
 #  log:
