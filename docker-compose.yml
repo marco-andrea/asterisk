@@ -11,7 +11,7 @@ services:
      #   source: config
      #   target: /etc/asterisk    
       - config:/etc/asterisk
-     # - log:/var/log/asterisk
+      - log:/var/log/asterisk
       - /run/udev:/run/udev:ro
       - /dev:/dev
     #ports:
@@ -22,23 +22,7 @@ services:
     restart: unless-stopped
     # https://stackoverflow.com/a/62758958
     device_cgroup_rules: ["c 188:* rmw"]
-  
-#  fail2ban:
-#    image: lscr.io/linuxserver/fail2ban:latest
-#    container_name: fail2ban
-#    cap_add:
-#      - NET_ADMIN
-#      - NET_RAW
-#    network_mode: host
-#    environment:
-#      - PUID=1000
-#      - PGID=1000
-#      - TZ=Etc/UTC
-#    volumes:
-      #- config:/config      
-#      - log:/remotelogs/asterisk:ro #optional
-#    restart: unless-stopped
           
 volumes:
   config:
-#  log:
+  log:
