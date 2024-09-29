@@ -9,6 +9,7 @@ RUN set -e \
 && apk add --update --quiet \
          curl \
          asterisk \
+         asterisk-curl \
          asterisk-opus \
          asterisk-chan-dongle \
          asterisk-sample-config >/dev/null \
