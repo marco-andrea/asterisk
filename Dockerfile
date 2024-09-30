@@ -12,6 +12,7 @@ RUN set -e \
 	         asterisk-curl \
 	         asterisk-opus \
 	         asterisk-chan-dongle \
+	  	 asterisk-sounds-en \
 	         asterisk-sample-config >/dev/null \
 	&& asterisk -U asterisk &>/dev/null \
 	&& sleep 5s \
