@@ -1,38 +1,18 @@
+# Use Alpine as the base image for a lightweight container
 FROM alpine:3.18
 
-LABEL maintainer="Andrius Kairiukstis <k@andrius.mobi>"
+# Install the required packages, including Asterisk, PJSIP, and necessary codecs
+RUN apk add --no-cache \
+    asterisk \
+    asterisk-curl \
+    asterisk-opus \
+    asterisk-chan-dongle \
+    asterisk-sounds-en \
+    asterisk-sample-config \
+    curl
 
-ENV LANG=C.UTF-8
-ENV LC_ALL C.UTF-8
+# Switch to the asterisk user
+USER asterisk
 
-RUN set -e \
-	&& apk add --update --quiet \
-	         curl \
-	         asterisk \
-	         asterisk-curl \
-	         asterisk-opus \
-	         asterisk-chan-dongle \
-	  	 asterisk-sounds-en \
-	         asterisk-sample-config >/dev/null \
-	&& asterisk -U asterisk &>/dev/null \
-	&& sleep 5s \
-	&& [ "$(asterisk -rx "core show channeltypes" | grep PJSIP)" != "" ] && : \
-	     || rm -rf /usr/lib/asterisk/modules/*pj* \
-	&& pkill -9 ast \
-	&& sleep 1s \
-	&& truncate -s 0 \
-	     /var/log/asterisk/messages \
-	     /var/log/asterisk/queue_log || : \
-	&& mkdir -p /var/spool/asterisk/fax \
-	&& chown -R asterisk: /var/spool/asterisk \
-	&& rm -rf /var/run/asterisk/* \
-	          /var/cache/apk/* \
-	          /tmp/* \
-	          /var/tmp/*
-
-#EXPOSE 5060/udp 5060/tcp
-#VOLUME /var/lib/asterisk/sounds /var/lib/asterisk/keys /var/lib/asterisk/phoneprov /var/spool/asterisk /var/log/asterisk
-
-ADD docker-entrypoint.sh /docker-entrypoint.sh
-
-ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
+# Start Asterisk with the required flags
+CMD ["/usr/sbin/asterisk", "-T", "-W", "-U", "asterisk", "-p", "-vvvdddf"]
