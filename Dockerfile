@@ -15,4 +15,4 @@ RUN apk add --no-cache \
 USER asterisk
 
 # Start Asterisk with the required flags
-CMD ["/usr/sbin/asterisk", "-T", "-W", "-U", "asterisk", "-p", "-vvvdddf"]
+CMD ["/usr/sbin/asterisk", "-T", "-U", "asterisk", "-p", "-vvvdddf"]
